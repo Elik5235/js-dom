@@ -1,16 +1,12 @@
-// При наведенні на кнопку "Ні" - потрібно її приховати (display: 'none')
 
+const form = document.getElementById('name-form');
 
+form.addEventListener('submit', consoleForm);
 
-const noBtn = document.getElementById('no-btn');
+function consoleForm(event) {
+    event.preventDefault();
 
-function ghostBtn(event) {
-    // const btn = event.target;
-    // btn.style.display = 'none';
-
-    console.log('test');
-    
-    event.target.removeEventListener('mouseenter', ghostBtn);
+    const form = event.target;
+    const value = form[0].value;
+    console.log(value);
 }
-
-noBtn.addEventListener('mouseenter', ghostBtn);
