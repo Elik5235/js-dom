@@ -1,32 +1,16 @@
-buttonElement.addEventListener('click', getAlert);
-// 1 варіант: зареєстрували обробник події натискання миші на кнопку
-// 2 варіант: навісили обробник натискання миші на кнопку
+// При наведенні на кнопку "Ні" - потрібно її приховати (display: 'none')
 
 
-/*
 
-Зробіть кнопку, додайте їй id
-Напишіть функцію, яка виводить в консоль "привіт"
-Навісити обробку події наведення миші на цю кнопку
+const noBtn = document.getElementById('no-btn');
 
+function ghostBtn(event) {
+    // const btn = event.target;
+    // btn.style.display = 'none';
 
-*/
-
-const secondButton = document.getElementById('second-btn');
-
-function consoleHello() {
-    console.log('Привіт');
+    console.log('test');
+    
+    event.target.removeEventListener('mouseenter', ghostBtn);
 }
 
-secondButton.addEventListener('mouseenter', consoleHello);
-function getAlert(event) {
-    const btn = event.target;
-
-    if(btn.style.backgroundColor === 'red') {
-        btn.style.backgroundColor = 'unset';
-    } else {
-        btn.style.backgroundColor = 'red';
-    }
-}
-
-const buttonElement = document.getElementById('btn');
+noBtn.addEventListener('mouseenter', ghostBtn);
