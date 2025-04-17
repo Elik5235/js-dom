@@ -1,29 +1,23 @@
-const collection = document.getElementsByClassName('paragraph');
+const CURRENCY = {
+  USD_TO_UAH: 37.37,
+  EUR_TO_UAH: 40.0,
+};
 
-// for(let i = 0; i < collection.length; i++) {
-//     collection[i].style.color = 'green';
-// }
+const converterForm = document.querySelector("#currency-converter-form");
 
-// for ... of - спеціальний цикл, який перебирає об'єкт по ключам
+converterForm.addEventListener('submit', converterHandler);
 
+function converterHandler(event) {
+  event.preventDefault();
+  const amount = Number(document.querySelector('#amount').value);
+  const currency = document.querySelector('#currency').value;
 
-for(let p of collection) {
-    p.style.color = 'green';
-}
-
-const btns = document.getElementsByTagName('button');
-const arr = [...btns];
-
-arr.forEach((button) => {
-    button.style.color = 'red';
-});
-
-function hello(event) {
-    console.log('Hello user');
-
-    event.target.removeEventListener('click', hello);
-}
-
-for(let btn of btns) {
-    btn.addEventListener('click', hello);
+  let convertedAmount;
+  if (currency === "USD") {
+    convertedAmount = amount * CURRENCY.USD_TO_UAH;
+  } else if (currency === "EUR") {
+    convertedAmount = amount * CURRENCY.EUR_TO_UAH;
+  }
+  const resultDiv = document.querySelector('#result');
+  resultDiv.innerHTML = `${amount} ${currency} = ${convertedAmount} UAH`;
 }
